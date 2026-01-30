@@ -1,0 +1,37 @@
+
+import { GoogleGenAI } from "@google/genai";
+import { SYSTEM_INSTRUCTION } from "../constants";
+
+export class GeminiService {
+  private ai: GoogleGenAI;
+
+  constructor() {
+    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+  }
+
+  async generateResponse(userMessage: string) {
+    try {
+      // Ensure we use the latest API key from env
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+      const response = await ai.models.generateContent({
+        model: 'gemini-3-flash-preview',
+        contents: userMessage,
+        config: {
+          systemInstruction: SYSTEM_INSTRUCTION,
+          temperature: 0.7,
+          maxOutputTokens: 800,
+        },
+      });
+
+      return response.text || "I'm sorry, I couldn't generate a response.";
+    } catch (error) {
+      console.error("AI Generation Error:", error);
+      if (error instanceof Error && error.message.includes("API key")) {
+        return "⚠️ Error: Invalid API Key. Please ensure the environment is configured correctly.";
+      }
+      return "⚠️ Oops! Something went wrong while connecting to the university server. Please try again or contact the admins.";
+    }
+  }
+}
+
+export const gemini = new GeminiService();
