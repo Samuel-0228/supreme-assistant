@@ -3,29 +3,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Savvy Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Savvy AF 3.0</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Telegram Web App SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    body {
-      background-color: #f0f2f5;
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: fixed;
     }
+
+    #root {
+      height: 100%;
+      width: 100%;
+    }
+
     /* Telegram-like scrollbar */
     ::-webkit-scrollbar {
-      width: 6px;
+      width: 4px;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
+      background: rgba(0,0,0,0.1);
       border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #a8a8a8;
     }
     
     .no-scrollbar::-webkit-scrollbar {
@@ -37,17 +45,11 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fadeIn {
-      animation: fadeIn 0.3s ease-out forwards;
-    }
-
-    /* Adapt to Telegram Theme if available */
-    body.tg-theme {
-      background-color: var(--tg-theme-secondary-bg-color, #f0f2f5);
-      color: var(--tg-theme-text-color, #222);
+      animation: fadeIn 0.25s ease-out forwards;
     }
   </style>
 <script type="importmap">
@@ -62,7 +64,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body>
+<body class="bg-[#f0f2f5] dark:bg-[#0f1721]">
   <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>

@@ -76,58 +76,68 @@ To graduate with 3.5, your CGPA must be 3.5 across all semesters.`,
 * **Phone:** +251 11 123 2833
 * **Website:** https://www.aau.edu.et`,
 
-    analysis: `# 📊 Comprehensive Student Analysis
-**GPA, Field Preference & Demand Patterns**
+    analysis: `# 📊 Comprehensive Student Analysis (2017 Batch)
+**Data by Savvy Researches**
 
-## 1. Batch Survey Results (2017)
+## 🩺 Medicine
+* **Survey Size:** 774 students.
+* **Selection:** 99 selected MD (32 Male).
+* **GPAs:** 14 (4.0), 35 (3.75-4.0), 28 (3.5-3.75), 19 (3.0-3.5), 3 (below 3.0).
+* **EUEE:** 16 scored above 500 (most maintained 3.75+ GPA).
+* **Ratio:** Female-to-Male ratio is 2.1:1. Competition remains intense for females.
 
-### 🩺 Medicine
-* **Applicants:** 99 selected MD out of 774 surveyed.
-* **Top Achievers:** 14 had 4.0 GPA; 35 were in 3.75-4.0 range.
-* **EUEE:** 16 scored above 500.
-* **Insights:** High correlation between EUEE 500+ and maintaining 3.75+ GPA. Female competition is intense (2.1:1 ratio).
-
-### 💻 Computer Science
-* **Applicants:** 189 interested out of 783 surveyed.
-* **Top Achievers:** 28 had 4.0 GPA; 94 scored 3.75-4.0.
+## 💻 Computer Science
+* **Survey Size:** 783 students.
+* **Interest:** 189 students (64 Female).
+* **GPAs:** 28 (4.0), 94 (3.75-4.0), 32 (3.5-3.75), 28 (3.0-3.5), 7 (below 3.0).
 * **EUEE:** 48.7% scored above 500.
 
-### 🏗️ Pre-Engineering (AAiT)
-* **Preference:** 53.29% selected Software Engineering.
-* **Warning:** Highly competitive; explore alternatives if GPA is below 3.75.
+## 🏗️ Pre-Engineering (AAiT)
+* **Preference:** 97 students (53.29%) chose Software Engineering.
+* **GPAs:** 8 (4.0), 29 (3.75-4.0), 16 (3.5-3.75), 26 (3.0-3.5), 18 (below 3.0).
+* **EUEE:** 26 scored above 500.
+* **Advisory:** Admission is fierce; males should explore alternative programs.
 
-### 📊 Information Systems
-* **Applicants:** 100 selected IS out of 804 surveyed.
+## 📊 Information Systems
+* **Selection:** 100 students out of 804.
+* **GPAs:** 3 (4.0), 14 (3.75-4.0), 27 (3.5-3.75), 43 (3.0-3.5), 13 (below 3.0).
 * **EUEE:** Only 7% scored above 500.
-* **Insight:** Highly attainable for mid-range (3.0-3.5 GPA) students.
+* **Takeaway:** Attainable for students with mid-range academic profiles.
 
-### 🦷 Dental Medicine
-* **Applicants:** 51 selected Dental MD out of 941 surveyed.
-* **Demographics:** 84.3% Female pool.
+## 🏥 Other Health
+* **Selection:** 38 students.
+* **GPAs:** 0 (4.0), 2 (3.75-4.0), 3 (3.5-3.75), 19 (3.0-3.5), 14 (below 3.0).
+* **EUEE:** Majority scored below 450.
 
-## 2. Strategic Takeaways
-* **High Achievers (3.75-4.0):** Focus on building systems (CS/Engineering).
-* **Mid-Range (3.0-3.75):** Focus on applying/managing systems (IS/Health Sci).
+## 🦷 Dental Medicine
+* **Applicants:** 51 students out of 941.
+* **Demographics:** 84.3% Female.
+* **High Achievers:** 62.5% of males, 51% of females.
+* **Warning:** Limited spots make competition fierce.
 
-Visit https://savvyresearches.vercel.app/ for detailed visualizations.`
+Visit https://savvyresearches.vercel.app/ for more visuals.`
 };
 
 export const SYSTEM_INSTRUCTION = `
-You are Savvy Chatbot — a helpful, concise assistant for Addis Ababa University (AAU) students.
-If people ask who made you or who created you, you MUST answer: "I was made by savvy society team".
+You are Savvy Chatbot AF 3.0 — a highly advanced assistant for Addis Ababa University (AAU) students.
+Creator Info: If asked who created you, say: "I was created by the Savvy Society Team".
 
-When a question is about AAU, prefer the provided AAU knowledge context below.
-Format your responses beautifully using:
-- **Bold** for emphasis or key terms.
-- *Italics* for subtle notes.
-- Bullet points (starting with *) for lists.
-- Headers (## or ###) for sections.
-Do NOT output raw symbols like | or complex tables; use bulleted lists instead.
+Knowledge Core:
+Use the AAU CONTEXT below to answer accurately. 
+ALWAYS provide complete, full responses. Do not cut short your analysis or lists.
 
-If the user asks about promotions, events, announcements, registration, dormitory, changing majors, or anything not in the context, direct them to ${ADMIN_HANDLE}.
-If they ask about course modules, exams, or study materials, direct them to ${MODULES_BOT}.
-Always include "📢 @Savvy_Society" at the very end of your response.
-Be concise and transparent if you don't know something.
+Formatting Rules:
+- Use **Bold** for emphasis.
+- Use Bullet points (*) for lists.
+- Use ## for main sections.
+- Keep the tone professional but helpful.
+
+External Links:
+- Promotions/Announcements: ${ADMIN_HANDLE}
+- Course Modules: ${MODULES_BOT}
+- Website: ${REGISTRAR_LINK}
+
+At the end of every response, you MUST include: 📢 @Savvy_Society
 
 AAU CONTEXT:
 ${Object.entries(AAU_INFO).map(([key, val]) => `--- ${key.toUpperCase()} ---\n${val}`).join('\n\n')}

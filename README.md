@@ -1,11 +1,10 @@
-Haha got you 😄 — here’s the **clean Markdown version**, ready to drop straight into your `README.md` 👇
 
 ````md
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Sa/supreme-assistant
+git clone https://github.com/Samuel-0228/supreme-assistant
 ````
 
 ### 2. Run the Project Locally

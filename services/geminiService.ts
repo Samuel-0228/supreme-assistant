@@ -3,15 +3,9 @@ import { GoogleGenAI } from "@google/genai";
 import { SYSTEM_INSTRUCTION } from "../constants";
 
 export class GeminiService {
-  private ai: GoogleGenAI;
-
-  constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
-  }
-
   async generateResponse(userMessage: string) {
     try {
-      // Ensure we use the latest API key from env
+      // Re-initialize for fresh context and key access
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
@@ -19,7 +13,9 @@ export class GeminiService {
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
           temperature: 0.7,
-          maxOutputTokens: 800,
+          maxOutputTokens: 2500, // Increased to ensure long survey results finish
+          topK: 40,
+          topP: 0.95,
         },
       });
 
