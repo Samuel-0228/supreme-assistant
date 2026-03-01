@@ -46,8 +46,14 @@ const App: React.FC = () => {
       const tg = window.Telegram.WebApp;
       tg.ready();
       tg.expand();
-      tg.setHeaderColor(darkMode ? '#000000' : '#ffffff');
-      tg.setBackgroundColor(darkMode ? '#000000' : '#f8fafc');
+      
+      // Guard color settings with version checks to avoid warnings on older clients (e.g. v6.0)
+      if (tg.isVersionAtLeast('6.1')) {
+        tg.setHeaderColor(darkMode ? '#000000' : '#ffffff');
+      }
+      if (tg.isVersionAtLeast('6.2')) {
+        tg.setBackgroundColor(darkMode ? '#000000' : '#f8fafc');
+      }
     }
     if (darkMode) {
       document.documentElement.classList.add('dark');
@@ -118,7 +124,7 @@ const App: React.FC = () => {
           <div>
             <h1 className="font-display font-bold text-lg tracking-tight leading-none">Savvy AF 3.0</h1>
             <p className={`text-[10px] font-medium uppercase tracking-[0.2em] mt-1 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>
-              Addis Ababa University
+              yes , indeed we're
             </p>
           </div>
         </div>
