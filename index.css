@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-aau-blue: #003366;
+  --color-aau-gold: #FFD700;
+  --color-grok-black: #000000;
+  --color-grok-dark: #0A0A0A;
+  --color-grok-gray: #161616;
+  --color-grok-border: #262626;
+  --color-grok-accent: #6366f1;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-black text-white antialiased;
+  }
+}
+
+@layer components {
+  .grok-card {
+    @apply bg-[#0A0A0A] border border-[#262626] rounded-2xl;
+  }
+  
+  .grok-input {
+    @apply bg-[#161616] border border-[#262626] rounded-xl px-4 py-3 focus:outline-none focus:border-[#6366f1]/50 transition-all;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 10px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
