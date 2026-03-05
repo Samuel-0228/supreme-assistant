@@ -28,7 +28,7 @@ declare global {
 }
 
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true); // Default to dark for Grok feel
+  const [darkMode, setDarkMode] = useState(true); 
 
   const [messages, setMessages] = useState<Message[]>([
     {
