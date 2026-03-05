@@ -34,7 +34,7 @@ const App: React.FC = () => {
     {
       id: 'welcome',
       role: 'model',
-      text: "🤖 **Welcome to Savvy AF 3.0**\n\nI'm your official AAU student assistant. Ask me anything about faculties, cutoff points, or the latest student data analysis. How can I help you today?",
+      text: "🤖 **Welcome to Savvy AF 3.0**\n\nI'm your Savvy assistant. Ask me anything about faculties, cutoff points, or the latest student data analysis. How can I help you today?",
       timestamp: new Date()
     }
   ]);
