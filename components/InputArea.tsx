@@ -1,5 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Send, Paperclip, Smile, ArrowUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface InputAreaProps {
   onSendMessage: (text: string) => void;
@@ -25,7 +27,6 @@ const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isLoading, darkMod
     }
   };
 
-  // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -34,47 +35,51 @@ const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isLoading, darkMod
   }, [text]);
 
   return (
-    <div className={`${darkMode ? 'bg-[#17212b] border-gray-800' : 'bg-white border-gray-100'} border-t p-2 md:p-4 flex items-end gap-2 shadow-2xl z-20 transition-colors`}>
-      <div className={`flex-1 rounded-2xl px-4 py-1 flex items-center border transition-all ${
-        darkMode 
-          ? 'bg-[#0f1721] border-gray-800 focus-within:border-blue-900' 
-          : 'bg-[#f1f1f1] border-transparent focus-within:border-gray-200'
-      }`}>
-        <button className={`transition-colors px-1 ${darkMode ? 'text-gray-500 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'}`}>
-          <i className="fa-solid fa-paperclip"></i>
-        </button>
-        <textarea
-          ref={textareaRef}
-          rows={1}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Message..."
-          disabled={isLoading}
-          className={`flex-1 bg-transparent border-none focus:ring-0 text-sm md:text-base resize-none py-2 px-2 max-h-[150px] leading-tight transition-colors ${
-            darkMode ? 'text-white placeholder-gray-600' : 'text-gray-800 placeholder-gray-400'
-          }`}
-        />
-        <button className={`transition-colors px-1 ${darkMode ? 'text-gray-500 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'}`}>
-          <i className="fa-regular fa-face-smile"></i>
-        </button>
-      </div>
-      
-      <button
-        onClick={handleSend}
-        disabled={!text.trim() || isLoading}
-        className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
-          !text.trim() || isLoading
-            ? darkMode ? 'bg-gray-800 text-gray-600' : 'bg-gray-100 text-gray-300'
-            : 'bg-[#0088cc] text-white hover:bg-[#0077b5] active:scale-95'
-        }`}
-      >
-        {isLoading ? (
-          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-        ) : (
-          <i className="fa-solid fa-paper-plane"></i>
-        )}
+    <div className={`relative flex items-end gap-3 p-2 rounded-[24px] transition-all duration-300 ${
+      darkMode 
+        ? 'bg-white/[0.03] border border-white/10 focus-within:border-white/20' 
+        : 'bg-white border border-slate-200 shadow-lg shadow-slate-200/50 focus-within:border-slate-300'
+    }`}>
+      <button className={`p-2.5 rounded-full transition-colors ${darkMode ? 'text-white/40 hover:text-white/70 hover:bg-white/5' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'}`}>
+        <Paperclip size={20} />
       </button>
+      
+      <textarea
+        ref={textareaRef}
+        rows={1}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="Ask Savvy anything..."
+        disabled={isLoading}
+        className={`flex-1 bg-transparent border-none focus:ring-0 text-[15px] md:text-base resize-none py-3 px-1 max-h-[150px] leading-relaxed transition-colors ${
+          darkMode ? 'text-white placeholder-white/20' : 'text-slate-800 placeholder-slate-400'
+        }`}
+      />
+      
+      <div className="flex items-center gap-1 mb-1 mr-1">
+        <button className={`p-2.5 rounded-full transition-colors hidden md:flex ${darkMode ? 'text-white/40 hover:text-white/70 hover:bg-white/5' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'}`}>
+          <Smile size={20} />
+        </button>
+        
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleSend}
+          disabled={!text.trim() || isLoading}
+          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+            !text.trim() || isLoading
+              ? darkMode ? 'bg-white/5 text-white/20' : 'bg-slate-100 text-slate-300'
+              : 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
+          }`}
+        >
+          {isLoading ? (
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            <ArrowUp size={20} />
+          )}
+        </motion.button>
+      </div>
     </div>
   );
 };
