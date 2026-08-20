@@ -2,43 +2,55 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
   
-  --color-aau-blue: #003366;
-  --color-aau-gold: #FFD700;
-  --color-grok-black: #000000;
-  --color-grok-dark: #0A0A0A;
-  --color-grok-gray: #161616;
-  --color-grok-border: #262626;
-  --color-grok-accent: #6366f1;
+  --color-mono-bg: #000000;
+  --color-mono-card: #09090b;
+  --color-mono-hover: #18181b;
+  --color-mono-border: #27272a;
+  --color-mono-subtle: #3f3f46;
+  --color-mono-muted: #71717a;
+  --color-mono-secondary: #a1a1aa;
 }
 
 @layer base {
   body {
-    @apply font-sans bg-black text-white antialiased;
+    @apply font-sans bg-black text-zinc-100 antialiased selection:bg-zinc-800 selection:text-white;
   }
 }
 
 @layer components {
-  .grok-card {
-    @apply bg-[#0A0A0A] border border-[#262626] rounded-2xl;
+  .mono-card {
+    @apply bg-[#09090b] border border-[#27272a] rounded-xl transition-all duration-200;
   }
   
-  .grok-input {
-    @apply bg-[#161616] border border-[#262626] rounded-xl px-4 py-3 focus:outline-none focus:border-[#6366f1]/50 transition-all;
+  .mono-input {
+    @apply bg-[#18181b] border border-[#27272a] rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400 transition-all;
+  }
+
+  .mono-btn {
+    @apply bg-white text-black font-medium px-4 py-2 rounded-lg hover:bg-zinc-200 active:scale-[0.98] transition-all disabled:opacity-40 disabled:hover:bg-white;
+  }
+
+  .mono-btn-ghost {
+    @apply bg-transparent text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-lg p-2 transition-all;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
-  border-radius: 10px;
+  background: #27272a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
 }
 
 .no-scrollbar::-webkit-scrollbar {
