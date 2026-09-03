@@ -8,6 +8,7 @@ import ChatMessage from './components/ChatMessage';
 import InputArea from './components/InputArea';
 import QuickActions from './components/QuickActions';
 import BlogModal from './components/BlogModal';
+import RibbonFieldCanvas from './components/RibbonFieldCanvas';
 
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -116,7 +117,21 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-black text-zinc-100 font-sans antialiased">
+    <div className="relative flex h-screen w-screen overflow-hidden bg-black text-zinc-100 font-sans antialiased">
+      {/* Animated Monochrome Ribbon Gradient Background Canvas */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-40">
+        <RibbonFieldCanvas
+          angle={135}
+          wave={15}
+          softness={30}
+          scale={75}
+          vignette={50}
+          grain={80}
+          animated={true}
+          speed={15}
+        />
+      </div>
+
       {/* Sidebar navigation */}
       <Sidebar
         isOpen={sidebarOpen}
@@ -127,7 +142,7 @@ export default function App() {
       />
 
       {/* Main chat view */}
-      <div className="flex-1 flex flex-col min-w-0 h-full bg-black relative">
+      <div className="flex-1 flex flex-col min-w-0 h-full relative z-10">
         {/* Header bar */}
         <Header
           onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
@@ -188,4 +203,5 @@ export default function App() {
     </div>
   );
 }
+
 
