@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Paperclip, Command, X, FileText, BarChart3, Building2, GraduationCap, PhoneCall, RotateCcw } from 'lucide-react';
+import { Send, Paperclip, Command, X, FileText, BarChart3, Building2, GraduationCap, PhoneCall, RotateCcw, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface InputAreaProps {
@@ -16,6 +16,12 @@ interface CommandSuggestion {
 }
 
 const commandSuggestions: CommandSuggestion[] = [
+  {
+    icon: <HelpCircle className="h-4 w-4 text-zinc-300" />,
+    label: "UAT Exam Guide",
+    description: "Structure, pacing, SAT prep & 750 ETB Telebirr fee",
+    prefix: "/uat",
+  },
   {
     icon: <BarChart3 className="h-4 w-4 text-zinc-300" />,
     label: "Cutoff Points",
@@ -43,7 +49,7 @@ const commandSuggestions: CommandSuggestion[] = [
   {
     icon: <FileText className="h-4 w-4 text-zinc-300" />,
     label: "Survey Analysis",
-    description: "Detailed batch analysis and statistics",
+    description: "Detailed batch placement & Savvy Researches link",
     prefix: "/analysis",
   },
   {
@@ -169,9 +175,9 @@ export const InputArea: React.FC<InputAreaProps> = ({
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
-            className="absolute bottom-full left-4 right-4 mb-2 z-40 bg-[#09090b] border border-zinc-800 rounded-xl shadow-2xl overflow-hidden"
+            className="absolute bottom-full left-4 right-4 mb-2 z-40 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden"
           >
-            <div className="px-3 py-2 border-b border-zinc-800 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+            <div className="px-3 py-2 border-b border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-400">
               <span>COMMAND SUGGESTIONS</span>
               <span>Use ↑ ↓ to navigate, Enter to select</span>
             </div>
@@ -182,20 +188,20 @@ export const InputArea: React.FC<InputAreaProps> = ({
                   onClick={() => handleSelectCommand(cmd)}
                   className={`w-full flex items-center justify-between p-2.5 rounded-lg text-left transition-colors ${
                     activeSuggestion === idx
-                      ? 'bg-zinc-800 text-white'
-                      : 'text-zinc-300 hover:bg-zinc-900'
+                      ? 'bg-white/10 text-white'
+                      : 'text-zinc-300 hover:bg-white/[0.05]'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-1.5 rounded-md bg-zinc-900 border border-zinc-800">
+                    <div className="p-1.5 rounded-md bg-white/[0.05] border border-white/10">
                       {cmd.icon}
                     </div>
                     <div>
-                      <div className="text-xs font-semibold">{cmd.label}</div>
+                      <div className="text-xs font-semibold text-white">{cmd.label}</div>
                       <div className="text-[11px] text-zinc-400">{cmd.description}</div>
                     </div>
                   </div>
-                  <span className="font-mono text-xs text-zinc-400 px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800">
+                  <span className="font-mono text-xs text-zinc-400 px-2 py-0.5 rounded bg-white/[0.05] border border-white/10">
                     {cmd.prefix}
                   </span>
                 </button>
@@ -206,19 +212,19 @@ export const InputArea: React.FC<InputAreaProps> = ({
       </AnimatePresence>
 
       {/* Main Input Box */}
-      <div className="relative rounded-xl bg-[#09090b] border border-zinc-800 focus-within:border-zinc-500 transition-all shadow-lg">
+      <div className="relative rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 focus-within:border-white/25 transition-all shadow-xl overflow-hidden">
         {/* Attachments preview */}
         {attachments.length > 0 && (
-          <div className="flex flex-wrap gap-2 px-3 pt-3 pb-1 border-b border-zinc-800">
+          <div className="flex flex-wrap gap-2 px-3 pt-3 pb-1 border-b border-white/10">
             {attachments.map((file, idx) => (
               <div
                 key={idx}
-                className="flex items-center gap-2 bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 rounded-md text-xs font-mono"
+                className="flex items-center gap-2 bg-white/10 border border-white/10 text-zinc-200 px-2.5 py-1 rounded-md text-xs font-mono"
               >
                 <span>{file}</span>
                 <button
                   onClick={() => removeAttachment(idx)}
-                  className="text-zinc-500 hover:text-white transition-colors"
+                  className="text-zinc-400 hover:text-white transition-colors"
                 >
                   <X size={12} />
                 </button>
@@ -236,16 +242,16 @@ export const InputArea: React.FC<InputAreaProps> = ({
           onKeyDown={handleKeyDown}
           placeholder="Ask Savvy AF 3.0 about AAU cutoffs, faculties, contacts... (Type / for commands)"
           disabled={isLoading}
-          className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-sm text-white placeholder-zinc-500 resize-none px-4 py-3.5 leading-relaxed max-h-40"
+          className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-sm text-white placeholder-zinc-500 resize-none px-4 py-3.5 leading-relaxed max-h-40 font-sans"
         />
 
         {/* Action Controls Bar */}
-        <div className="flex items-center justify-between px-3 py-2 border-t border-zinc-800/60 bg-[#09090b]">
+        <div className="flex items-center justify-between px-3 py-2 border-t border-white/10 bg-transparent">
           <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={handleAttachMockFile}
-              className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+              className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
               title="Attach File"
             >
               <Paperclip size={16} />
@@ -254,7 +260,7 @@ export const InputArea: React.FC<InputAreaProps> = ({
               type="button"
               onClick={() => setShowPalette((prev) => !prev)}
               className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
-                showPalette ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
+                showPalette ? 'bg-white/15 text-white' : 'text-zinc-400 hover:text-white hover:bg-white/10'
               }`}
               title="Toggle Commands"
             >
@@ -270,7 +276,7 @@ export const InputArea: React.FC<InputAreaProps> = ({
               type="button"
               onClick={handleSend}
               disabled={!text.trim() || isLoading}
-              className="p-2.5 rounded-lg bg-white text-black font-semibold disabled:opacity-30 disabled:hover:bg-white hover:bg-zinc-200 transition-all flex items-center justify-center active:scale-95"
+              className="p-2.5 rounded-lg bg-white text-black font-semibold disabled:opacity-30 disabled:hover:bg-white hover:bg-zinc-200 transition-all flex items-center justify-center active:scale-95 shadow-md"
             >
               {isLoading ? (
                 <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
@@ -286,3 +292,4 @@ export const InputArea: React.FC<InputAreaProps> = ({
 };
 
 export default InputArea;
+

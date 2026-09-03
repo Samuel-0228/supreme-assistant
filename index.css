@@ -5,9 +5,9 @@
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
   
   --color-mono-bg: #000000;
-  --color-mono-card: #09090b;
-  --color-mono-hover: #18181b;
-  --color-mono-border: #27272a;
+  --color-mono-card: rgba(255, 255, 255, 0.03);
+  --color-mono-hover: rgba(255, 255, 255, 0.06);
+  --color-mono-border: rgba(255, 255, 255, 0.1);
   --color-mono-subtle: #3f3f46;
   --color-mono-muted: #71717a;
   --color-mono-secondary: #a1a1aa;
@@ -16,16 +16,64 @@
 @layer base {
   body {
     @apply font-sans bg-black text-zinc-100 antialiased selection:bg-zinc-800 selection:text-white;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0px, transparent 50%);
   }
 }
 
 @layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .glass-panel {
+    background: rgba(12, 12, 15, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
   .mono-card {
-    @apply bg-[#09090b] border border-[#27272a] rounded-xl transition-all duration-200;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.875rem;
+    transition: all 0.2s ease;
+  }
+  
+  .mono-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.16);
   }
   
   .mono-input {
-    @apply bg-[#18181b] border border-[#27272a] rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400 transition-all;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    color: #ffffff;
+    transition: all 0.2s ease;
+  }
+
+  .mono-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.25);
   }
 
   .mono-btn {
@@ -33,24 +81,24 @@
   }
 
   .mono-btn-ghost {
-    @apply bg-transparent text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-lg p-2 transition-all;
+    @apply bg-transparent text-zinc-400 hover:text-white hover:bg-white/10 rounded-lg p-2 transition-all;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -60,3 +108,4 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
