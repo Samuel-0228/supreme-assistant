@@ -113,27 +113,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Sidebar Panel */}
       <aside
-        className={`fixed md:static top-0 left-0 bottom-0 z-50 w-72 bg-black/80 backdrop-blur-xl border-r border-white/10 flex flex-col transition-transform duration-200 ease-in-out ${
+        className={`fixed md:static top-0 left-0 bottom-0 z-50 w-[280px] sm:w-72 max-w-[85vw] bg-black/90 backdrop-blur-xl border-r border-white/10 flex flex-col transition-transform duration-200 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
         {/* Top Header / New Chat */}
-        <div className="p-4 border-b border-white/10 flex items-center justify-between gap-2">
+        <div className="p-3.5 sm:p-4 border-b border-white/10 flex items-center justify-between gap-2">
           <button
             onClick={() => {
               onNewChat();
               if (window.innerWidth < 768) onClose();
             }}
-            className="flex-1 flex items-center justify-center gap-2 bg-white text-black font-medium text-xs py-2.5 px-3 rounded-lg hover:bg-zinc-200 transition-all active:scale-[0.98]"
+            className="flex-1 flex items-center justify-center gap-2 bg-white text-black font-medium text-xs py-2.5 px-3 rounded-lg hover:bg-zinc-200 transition-all active:scale-[0.98] min-h-[38px]"
           >
             <PlusCircle size={16} />
             <span>New Conversation</span>
           </button>
           <button
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-white/10 md:hidden"
+            className="p-2 text-zinc-300 hover:text-white rounded-lg hover:bg-white/10 active:scale-95 md:hidden min-w-[36px] min-h-[36px] flex items-center justify-center"
+            aria-label="Close menu"
           >
-            <X size={18} />
+            <X size={20} />
           </button>
         </div>
 

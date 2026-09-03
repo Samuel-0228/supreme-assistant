@@ -166,7 +166,7 @@ export const InputArea: React.FC<InputAreaProps> = ({
   };
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto px-4 pb-4 pt-2">
+    <div className="relative w-full max-w-3xl mx-auto px-3 sm:px-4 pb-3 sm:pb-4 pt-1.5 sm:pt-2">
       {/* Command Palette Floating Popup */}
       <AnimatePresence>
         {showPalette && (
@@ -175,11 +175,11 @@ export const InputArea: React.FC<InputAreaProps> = ({
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
-            className="absolute bottom-full left-4 right-4 mb-2 z-40 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden"
+            className="absolute bottom-full left-3 right-3 sm:left-4 sm:right-4 mb-2 z-40 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden"
           >
             <div className="px-3 py-2 border-b border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-400">
               <span>COMMAND SUGGESTIONS</span>
-              <span>Use ↑ ↓ to navigate, Enter to select</span>
+              <span className="hidden sm:inline">Use ↑ ↓ to navigate, Enter to select</span>
             </div>
             <div className="p-1 max-h-60 overflow-y-auto">
               {commandSuggestions.map((cmd, idx) => (
@@ -240,35 +240,35 @@ export const InputArea: React.FC<InputAreaProps> = ({
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Ask Savvy AF 3.0 about AAU cutoffs, faculties, contacts... (Type / for commands)"
+          placeholder="Ask Savvy AF 3.0 about AAU cutoffs, faculties... (Type / for commands)"
           disabled={isLoading}
-          className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-sm text-white placeholder-zinc-500 resize-none px-4 py-3.5 leading-relaxed max-h-40 font-sans"
+          className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-sm text-white placeholder-zinc-500 resize-none px-3.5 py-3 sm:px-4 sm:py-3.5 leading-relaxed max-h-40 font-sans"
         />
 
         {/* Action Controls Bar */}
-        <div className="flex items-center justify-between px-3 py-2 border-t border-white/10 bg-transparent">
+        <div className="flex items-center justify-between px-2.5 sm:px-3 py-1.5 sm:py-2 border-t border-white/10 bg-transparent">
           <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={handleAttachMockFile}
-              className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+              className="p-2.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center active:scale-95"
               title="Attach File"
             >
-              <Paperclip size={16} />
+              <Paperclip size={17} />
             </button>
             <button
               type="button"
               onClick={() => setShowPalette((prev) => !prev)}
-              className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
+              className={`p-2.5 rounded-lg transition-colors flex items-center justify-center gap-1 min-w-[36px] min-h-[36px] active:scale-95 ${
                 showPalette ? 'bg-white/15 text-white' : 'text-zinc-400 hover:text-white hover:bg-white/10'
               }`}
               title="Toggle Commands"
             >
-              <Command size={16} />
+              <Command size={17} />
             </button>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <span className="hidden sm:inline text-[11px] font-mono text-zinc-500">
               Enter ↵ to send
             </span>
@@ -276,7 +276,7 @@ export const InputArea: React.FC<InputAreaProps> = ({
               type="button"
               onClick={handleSend}
               disabled={!text.trim() || isLoading}
-              className="p-2.5 rounded-lg bg-white text-black font-semibold disabled:opacity-30 disabled:hover:bg-white hover:bg-zinc-200 transition-all flex items-center justify-center active:scale-95 shadow-md"
+              className="p-2.5 sm:px-3.5 rounded-xl bg-white text-black font-semibold disabled:opacity-30 disabled:hover:bg-white hover:bg-zinc-200 transition-all flex items-center justify-center active:scale-95 shadow-md min-w-[38px] min-h-[38px]"
             >
               {isLoading ? (
                 <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
